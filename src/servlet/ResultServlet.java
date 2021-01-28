@@ -56,76 +56,61 @@ public class ResultServlet extends HttpServlet {
 		String scene = (String) session.getAttribute("scene");
 
 		// 共通変数の準備
-		boolean statusCharge; //チャージ状態
 		int chargeTargetTime; // チャージ目標時間
-		long resultTime; // チャージ時間
+		long chargeResultTime; // チャージ時間
 		String chargeMessage; // チャージメッセージ
 		String battleMessage; // バトルメッセージ
 		SwordDAO swordDAO = new SwordDAO(); //武器のDAO
 		Sword sword = swordDAO.getSword(1); //武器（初期値として普通の剣(ID:1)とする
 
 		// 各情報の初期化とセッションスコープへの格納
-		resultTime = 0; // 経過時間
+		chargeResultTime = 0; // チャージ時間
+		request.setAttribute("chargeResultTime", chargeResultTime);
 		chargeMessage = ""; // チャージメッセージ
 		battleMessage = ""; // バトルメッセージ
-		session.setAttribute("resultTime", resultTime);
 		session.setAttribute("chargeMessage", chargeMessage);
-		session.setAttribute("battleMessage", battleMessage);
 
 		/****** ↓ボタンで渡された情報により分岐 ******/
 		switch (select) {
 		case "ためる"://ためる時の処理
 
-			// 各情報の初期化
-			chargeTargetTime = 0; //チャージ目標時間
-			session.setAttribute("chargeTargetTime", chargeTargetTime);
-
 			// [設定]チャージ時間の上限値
 			int chargeRandom = 3; //一旦3
 
 			// 開始時刻を取得
-			long startTime = System.currentTimeMillis();
-			// チャージ状態をtrueにする
-			statusCharge = true;
+			long chargeStartTime = System.currentTimeMillis();
 			// ランダムで秒数を生成し、チャージメッセージを変更
 			chargeTargetTime = new Random().nextInt(chargeRandom) + 1;
 			chargeMessage = chargeTargetTime + "秒ちょうどで『はなつ』ボタンを押せ！<br>";
 			// 情報をセッションスコープに保存
-			session.setAttribute("statusCharge", statusCharge);
-			session.setAttribute("startTime", startTime);
 			session.setAttribute("chargeTargetTime", chargeTargetTime);
+			session.setAttribute("startTime", chargeStartTime);
 			session.setAttribute("chargeMessage", chargeMessage);
 			break;
 
 		case "はなつ"://はなつ時の処理
-			// セッションスコープからチャージ状態を取得
-			statusCharge = (boolean) session.getAttribute("statusCharge");
 			// セッションスコープからチャージ目標時間を取得
 			chargeTargetTime = (Integer) session.getAttribute("chargeTargetTime");
 
-			if (statusCharge) { //はなつ処理
+			if (chargeTargetTime != 0) { //はなつ処理
 				// 終了時刻を取得
 				long endTime = System.currentTimeMillis();
 				// 開始時刻をセッションスコープから取得
-				startTime = (long) session.getAttribute("startTime");
+				chargeStartTime = (long) session.getAttribute("startTime");
 				// 差分の時間を計算
 				long longChargeTargetTime = (long) chargeTargetTime * 1000;
-				resultTime = Math.abs(longChargeTargetTime - (endTime - startTime)); //絶対値を求める
-				//				System.out.println("resultTime:" + resultTime);
-				//				System.out.println("startTime:" + startTime);
-				//				System.out.println("endTime:" + endTime);
-				//				System.out.println("longChargeTargetTime:" + longChargeTargetTime);
+				chargeResultTime = Math.abs(longChargeTargetTime - (endTime - chargeStartTime)); //絶対値を求める
 
 				// 結果とモンスターを渡して、はなつ処理
-				int damege = hero.releaseAttack(resultTime, monster);
-				int bonusMp = hero.releaseBonus(resultTime);
+				int damege = hero.releaseAttack(chargeResultTime, monster);
+				int bonusMp = hero.releaseBonus(chargeResultTime);
 				// バトルメッセージに結果を反映
-				if (damege >= 300) {
-					battleMessage += "とてもよい攻撃、大ダメージ！<br>";
+				if (damege >= 100 && bonusMp == 10) {
+					battleMessage += "とてもよい攻撃、大ダメージ！";
 				} else if (bonusMp == 5) {
-					battleMessage += "少しよい攻撃！<br>";
+					battleMessage += "少しよい攻撃！";
 				} else {
-					battleMessage += "普通の攻撃！<br>";
+					battleMessage += "普通の攻撃！";
 				}
 				// バトルメッセージの追加
 				if (damege > 0) {
@@ -135,17 +120,17 @@ public class ResultServlet extends HttpServlet {
 					battleMessage += "勇者のMPが" + bonusMp + "回復した<br>";
 				}
 				// 時刻情報をセッションスコープに保存
-				session.setAttribute("resultTime", resultTime);
+				request.setAttribute("chargeResultTime", chargeResultTime);
 
 				// チャージ状態とスタート時間を初期化し、セッションスコープに登録
-				statusCharge = false;
-				startTime = 0;
-				session.setAttribute("statusCharge", statusCharge);
-				session.setAttribute("startTime", startTime);
+				chargeStartTime = 0;
+				chargeTargetTime = 0; //チャージ目標時間
+				session.setAttribute("chargeTargetTime", chargeTargetTime);
+				session.setAttribute("startTime", chargeStartTime);
 
 			} else { //先にためるをしていない場合
 				// チャージメッセージ変更
-				chargeMessage = "先に『ためる』必要がある！";
+				chargeMessage = "先に『ためる』必要がある！<br>";
 				// 情報をセッションスコープに保存
 				session.setAttribute("chargeMessage", chargeMessage);
 			}
@@ -224,7 +209,6 @@ public class ResultServlet extends HttpServlet {
 				} else { //処理できなかった場合
 					battleMessage += "MPが足りない！<br>";
 				}
-
 			} else { //イケおじモードのとき
 				battleMessage += "イケおじモードでは武器生成できない！<br>";
 			}
@@ -251,14 +235,14 @@ public class ResultServlet extends HttpServlet {
 		}
 
 		//画面遷移判定
-		if (!(judgeEnemyLife))
-
-		{ //敵が死んだのであれば、敵死亡画面
-									//場面の情報により切り分け
+		if (!(judgeEnemyLife)){ //敵が死んだのであれば、敵死亡画面
+			//場面の情報により切り分け
 			if (scene.equals("steppe")) {
 				url = "smallhillmonster_dead.jsp";
+				hero.setSword(sword); //武器を普通の剣に戻す
 			} else {
 				url = "devilbattlemonster_dead.jsp";
+				hero.setSword(sword); //武器を普通の剣に戻す
 			}
 		} else if (!(judgeAllyLife)) { //味方が死んだのであれば、ゲームオーバー画面
 			url = "hero_dead.jsp";
@@ -275,7 +259,7 @@ public class ResultServlet extends HttpServlet {
 		if (ikeStartTurn != 0) {
 			if (encountTurn - ikeStartTurn >= 5) { //5ターン設定
 				hero.getSword().setAttack(hero.getSword().getAttack() / 2); //攻撃力を半分にする（元に戻す）
-				battleMessage += "普通のおじさんに戻った！";
+				battleMessage += "普通のおじさんに戻った！<br>";
 				ikeStartTurn = 0; //モード終了し、値を初期化
 				session.setAttribute("ikeStartTurn", ikeStartTurn);
 			} else {
@@ -289,16 +273,14 @@ public class ResultServlet extends HttpServlet {
 				hero.setSword(sword); //武器を普通の剣に戻す）
 				swordCreateTurn = 0; //モード終了し、値を初期化
 				session.setAttribute("swordCreateTurn", swordCreateTurn);
-				battleMessage += "武器が元にもどった";
+				battleMessage += "武器が元にもどった<br>";
 			} else {
 				//武器生成中
 			}
 		}
 
-
 		// 戦闘情報をセッションスコープに保存
-		session.setAttribute("battleMessage", battleMessage);
-
+		request.setAttribute("battleMessage", battleMessage);
 
 		//ターン数を追加し、セッションスコープに保存
 		encountTurn++;

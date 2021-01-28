@@ -10,7 +10,7 @@
 <body>
 
 
-<img src="http://localhost:8080/RPGGAME/image/Top.png" alt="hill" class="pixel"/>
+<img src="http://localhost:8080/RPGGAME/image/Top.png" class="pixel" alt="毛の生えそろわないRPG　２か月でjavaを学んできた" />
 
 <div class="square2">
 
@@ -24,7 +24,7 @@
 
 <img src="http://localhost:8080/RPGGAME/image/Slime_G.PNG" class="monster6">
 <a href="MeasureServlet">
-<img src="http://localhost:8080/RPGGAME/image/Start.gif" class="pixel5"/>
+<img src="http://localhost:8080/RPGGAME/image/Start.gif" class="pixel5" alt="スタートボタン" />
 </a>
 <img src="http://localhost:8080/RPGGAME/image/mukai.png" class="pixel6"/>
 </div>

@@ -10,13 +10,13 @@
 </head>
 <body>
 
-<img alt="prologue" src="http://localhost:8080/RPGGAME/image/Slap1.png" class="pixel">
+<img  src="http://localhost:8080/RPGGAME/image/Slap1.png" class="pixel" alt="姫の名前を間違えた　ビンタされる勇者">
 
 <div class="rog">ゴルアァァァァ！！！なに姫である私の名前を間違えとんじゃワレ！！！！
 初老ブタ野郎！！！！ぶぅっ〇すぅうううううう！！！！</div>
 
 <div class="startbutton">
-<input type="submit" value="ゲームオーバー" onclick="location.href='start.jsp'"></div>
+<input type="submit" value="ゲームオーバー" onclick="location.href='hero_dead.jsp'"></div>
 
 </body>
 </html>

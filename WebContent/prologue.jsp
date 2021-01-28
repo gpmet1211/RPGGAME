@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<img alt="prologue" src="http://localhost:8080/RPGGAME/image/Castle2.jpg" class="pixel">
+<img  src="http://localhost:8080/RPGGAME/image/Castle2.jpg" class="pixel" alt="プロローグ１">
 
 <div class="prologue">私は勇者である。６５歳の定年まであと３年。偉大なる祖父の代で大魔王との
 決戦が終わりを迎えてから、思い返せば平和な世界を生きてきた。

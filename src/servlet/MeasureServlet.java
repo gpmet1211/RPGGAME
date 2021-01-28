@@ -55,7 +55,9 @@ public class MeasureServlet extends HttpServlet {
 			//クリアリストを作成し、セッションスコープに保存
 			ClearDAO cleardao = new ClearDAO();
 			List<Clear> clearList = cleardao.findRanker(rank);
-			session.setAttribute("clearList", clearList);
+			long clearAvg = cleardao.findAvg();
+			request.setAttribute("clearList", clearList);
+			request.setAttribute("clearAvg", clearAvg);
 			// フォワード先の指定
 			url = "ending.jsp";
 		}
@@ -87,7 +89,9 @@ public class MeasureServlet extends HttpServlet {
 			cleardao.create(clear);
 			//クリアリストを作成し、セッションスコープに保存
 			List<Clear> clearList = cleardao.findRanker(rank);
-			session.setAttribute("clearList", clearList);
+			long clearAvg = cleardao.findAvg();
+			request.setAttribute("clearList", clearList);
+			request.setAttribute("clearAvg", clearAvg);
 			//クリア時間を0にし、セッションスコープに保存（複数登録防止のために必要）
 			gameClearTime = 0;
 			session.setAttribute("gameClearTime", gameClearTime);

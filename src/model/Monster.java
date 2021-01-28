@@ -9,19 +9,19 @@ public class Monster implements Serializable {
 	private int hp; //hp
 	private int mp; //mp
 	private int attack; //攻撃力
-	private int exp; //倒された際の経験値
+	private String url; //モンスターのファイル名
 
 	public Monster() {
 
 	}
 
-	public Monster(int id, String name, int hp, int mp, int attack, int exp) {
+	public Monster(int id, String name, int hp, int mp, int attack, String url) {
 		this.id = id;
 		this.name = name;
 		this.hp = hp;
 		this.mp = mp;
 		this.attack = attack;
-		this.exp = exp;
+		this.url = url;
 	}
 
 	public int getId() {
@@ -74,12 +74,12 @@ public class Monster implements Serializable {
 		this.attack = attack;
 	}
 
-	public int getExp() {
-		return exp;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setExp(int exp) {
-		this.exp = exp;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public int attack(Hero hero) {

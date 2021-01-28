@@ -1,225 +1,10 @@
 @charset "UTF-8";
 
+/*背景色、文字色指定*/
 body {
 	background-color: #000;
 	color: #FFF;
 }
-
-/* prologue~prologue2のログ用 */
-.prologue{
-	position: relative;
-	font-size: 21px;
-	 border:double;
-	 display: block;
-	 margin: 0 auto;
-	 width:750px;
-	 height: 150;
-	 padding: 10px;
-
-}
-/* prologue~prologue2のログ内ボタン配置用 */
-.prologue .selectbutton{
-	position: absolute;
-	 right: 3%;
-	 bottom: 5%;
-
-}
-/*王様との会話用（王様がアニメーションの為分けた。）*/
-.prologue2{
-	position: relative;
-	font-size: 21px;
-	 border:double;
-	 display: block;
-	 margin: 0 auto;
-	 width:750px;
-	 height: 150;
-	 padding: 10px;
-
-
-}
-/*王様との会話内のボタン配置*/
-.prologue2 .selectbutton{
-	position: absolute;
-	 right: 3%;
-	 bottom: 5%;
-
-}
-
-
-/* smallhill,prison,devilbattle以外の共通800x400px */
-img.pixel {
-	position: relative;
-	display: block;
-	width: 800px;
-	height: 400px;
-	margin: 50px auto;
-}
-
-
-/*steppe.jsp用ボタン配置*/
-.startbutton{
-	display: block;
-	margin: 0 auto;
-	margin-top: 10px;
-	width:83px;
-	height: 25px;
-
-}
-
-/*devilcastleボタン選択用配置*/
-.selectbutton2{
-
-
-	display: block;
-	margin: 0 auto;
-	margin-top: 10px;
-	width:350px;
-	height: 25px;
-}
-/*王様のレイヤー～アニメーション用*/
-.kingcastle {
-	position: relative;
-	margin: 10px auto;
-	width: 800px;
-	height: 400px;
-	margin: 50px auto;
-}
-/*王様の城背景*/
-
-.kingcastle .castle{
-	position: absolute;
-	width: 800px;
-	height: 400px;
-}
-/*王様+アニメーション*/
-.kingcastle .king {
-	position: absolute;
-	top: 100;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: 0px auto;
-	width: auto;
-	height: 200px;
-	animation: anime55 2s 0s infinite alternate;  /* アニメーション指定 */
-
-}
-@keyframes anime55 {
-    0% {
-        left: 0;
-    }
-    25% {
-        bottom: 150px;
-    }
-    50% {
-    	bottom: 0px; left:200px
-    }
-    100% {
-        bottom:200px; right:300px;
-    }
-}
-
-
-/* バトルシステム内のログ*/
-
-div.rog{
-	font-size: 21px;
-	 border:double;
-	 display: block;
-	 margin: 0 auto;
-	 width:750px;
-	 height: 115px;
-	 padding: 10px;
-
-}
-/* smallhill用のレイヤー～アニメーション*/
-
-.smallhill {
-	position: relative;
-	margin: 10px auto;
-	width: 800px;
-	height: 400px;
-}
-/*丘背景*/
-.smallhill .hill{
-	position: absolute;
-	width: 800px;
-	height: 400px;
-}
-/*スライム+アニメーション*/
-.smallhill .monster {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: 0px auto;
-	width: auto;
-	height: 200px;
-	animation: anime 2s 0s infinite alternate;  /* アニメーション指定 */
-}
-
-
-@keyframes anime {
-    0% {
-        left: 0;
-    }
-    50% {
-        left: 200px;
-    }
-    100% {
-        right: 200px;
-    }
-}
-
-/* smallhill用のモンスター情報*/
-.smallhill .monsterinfo {
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	text-align: left;
-	background-color:black;
-	border:double;
-}
-
-/* proson.jsp用のレイヤー～アニメーション*/
-img.pixel2 {
-	position: relative;
-	display: block;
-	width: 800px;
-	height: 400px;
-	margin: 50px auto;
-	z-index: 1000;
-	/* background-color: #FFFFFF; */
-}
-
-/*格子背景*/
-.prison{
-	position: relative;
-	margin: 10px auto;
-	width: 800px;
-	height: 400px;
-	background-color: #FFFFFF;
-}
-/*姫レイヤー*/
-.prison .princess {
-	position: absolute;
-	top: 100;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: 0px auto;
-	width: auto;
-	height: 400px;
-}
-/*devilオート表示用*/
-img.pixel0{
-	position: relative;
-	display: block;
-	width: 400px;
-	height: auto;
-	margin: 20px auto;
-}
-
 /* ---------------------------------------------------------------------------------------*/
 
 
@@ -327,6 +112,263 @@ div.square2 {
 
 /*モンスターアニメーションここまで↑*/
 
+/* ---------------------------------------------------------------------------------------*/
+
+/* prologue~prologue2のログ用 */
+.prologue{
+	position: relative;
+	font-size: 21px;
+	 border:double;
+	 display: block;
+	 margin: 0 auto;
+	 width:750px;
+	 height: 150;
+	 padding: 10px;
+
+}
+/* prologue~prologue2のログ内ボタン配置用 */
+.prologue .selectbutton{
+	position: absolute;
+	 right: 3%;
+	 bottom: 5%;
+
+}
+/*王様との会話用（王様がアニメーションの為分けた。）*/
+.prologue2{
+	position: relative;
+	font-size: 21px;
+	 border:double;
+	 display: block;
+	 margin: 0 auto;
+	 width:750px;
+	 height: 150;
+	 padding: 10px;
+
+
+}
+/*王様との会話内のボタン配置*/
+.prologue2 .selectbutton{
+	position: absolute;
+	 right: 3%;
+	 bottom: 5%;
+
+}
+
+
+/* smallhill,prison,devilbattle以外の共通800x400px */
+img.pixel {
+	position: relative;
+	display: block;
+	width: 800px;
+	height: 400px;
+	margin: 50px auto;
+}
+
+
+/*steppe.jsp用ボタン配置*/
+.startbutton{
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+	width:83px;
+	height: 25px;
+
+}
+
+/*王様のレイヤー～アニメーション用*/
+.kingcastle {
+	position: relative;
+	margin: 10px auto;
+	width: 800px;
+	height: 400px;
+	margin: 50px auto;
+}
+/*王様の城背景*/
+
+.kingcastle .castle{
+	position: absolute;
+	width: 800px;
+	height: 400px;
+}
+/*王様+アニメーション*/
+.kingcastle .king {
+	position: absolute;
+	top: 100;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0px auto;
+	width: auto;
+	height: 200px;
+	animation: anime55 2s 0s infinite alternate;  /* アニメーション指定 */
+
+}
+
+/* バトルシステム内のログ*/
+
+div.rog{
+	position: relative;
+	font-size: 21px;
+	 border:double;
+	 display: block;
+	 margin: 0 auto;
+	 width:750px;
+	 height: 115px;
+	 padding: 10px;
+
+}
+/* smallhill周回用ボタンを左右に配置*/
+
+.selectbutton3{
+	position: relative;
+	display: block;
+	margin: 10px auto;
+	margin-top: 10px;
+	width:800px;
+	height: 25px;
+}
+
+.a {
+	position: absolute;
+	display: block;
+	left: 0px;
+}
+
+.b {
+	position: absolute;
+	display: block;
+	right: 0px
+}
+/* smallhill用のレイヤー～アニメーション*/
+
+.smallhill {
+	position: relative;
+	margin: 10px auto;
+	width: 800px;
+	height: 400px;
+}
+/*丘背景*/
+.smallhill .hill{
+	position: absolute;
+	width: 800px;
+	height: 400px;
+}
+/*スライム+アニメーション*/
+.smallhill .monster {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0px auto;
+	width: auto;
+	height: 200px;
+/* 	-webkit-animation:rotate-z 0.5s ; */
+	animation: anime 2s 0.5s infinite alternate;
+
+}  /* アニメーション指定 */
+.smallhill .monster69 {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0px auto;
+	width: auto;
+	height: 200px;
+	animation: sizescale 0.5s, rotate-z 0.5s,anime 2s 0.5s infinite alternate;
+}
+
+@keyframes rotate-z{
+  0%{transform:rotateZ(0deg);}
+  100%{transform:rotateZ(1080deg);}
+}
+@-webkit-keyframes rotate-x{
+  0%{-webkit-transform:rotateZ(0deg);}
+  100%{-webkit-transform:rotateZ(1080deg);}
+}
+
+
+@keyframes anime {
+    0% {
+        left: 0;
+    }
+    50% {
+        left: 200px;
+    }
+    100% {
+        right: 200px;
+    }
+}
+@keyframes sizescale {
+    0% {
+        width: 10px;
+	height: 10px;
+    }
+
+    100% {
+       width: auto;
+	height: 200px;
+    }
+}
+
+/* smallhill用のモンスター情報*/
+.smallhill .monsterinfo {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	text-align: left;
+	background-color:black;
+	border:double;
+}
+/*devilcastleボタン選択用配置*/
+.selectbutton2{
+
+
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+	width:50px;
+	height: 25px;
+}
+/* proson.jsp用のレイヤー～アニメーション*/
+img.pixel2 {
+	position: relative;
+	display: block;
+	width: 800px;
+	height: 400px;
+	margin: 50px auto;
+	z-index: 1000;
+	/* background-color: #FFFFFF; */
+}
+
+/*格子背景*/
+.prison{
+	position: relative;
+	margin: 10px auto;
+	width: 800px;
+	height: 400px;
+	background-color: #FFFFFF;
+}
+/*姫レイヤー*/
+.prison .princess {
+	position: absolute;
+	top: 100;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0px auto;
+	width: auto;
+	height: 400px;
+}
+/*devilオート表示用*/
+img.pixel0{
+	position: relative;
+	display: block;
+	width: 400px;
+	height: auto;
+	margin: 20px auto;
+}
+
+
 
 /*魔王バトル用背景レイヤー～魔王アニメーション↓*/
 
@@ -338,13 +380,13 @@ div.square2 {
 	height: 400px;
 }
 /*魔王情報*/
-.devilbattle .monsterinfo2{
-position: absolute;
-	top: 0;
-	right: 0;
-	text-align: right;
-	background-color: rgba(0,0,255,0.7);
-	border: 4px solid #008080;
+.devilbattle .monsterinfo{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	text-align: left;
+	background-color:black;
+	border:double;
 }
 /*魔王背景*/
 .devilbattle .devil{
@@ -361,10 +403,20 @@ position: absolute;
 	right: 0;
 	margin: 0px auto;
 	width: auto;
-	height: 200px;
+	height: 300px;
 	animation: anime3 2s 0s infinite alternate;  /* アニメーション指定 */
 }
-
+.devilbattle .devilman3 {
+	position: absolute;
+	top: 100;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0px auto;
+	width: auto;
+	height: 300px;
+	animation: fadeIn 3s , anime3 2s 0s infinite alternate;  /* アニメーション指定 */
+}
 @keyframes anime3 {
     0% {
         left: 0;
@@ -376,7 +428,230 @@ position: absolute;
         right: 200px;
     }
 }
+@keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
 
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+/* 魔王撃破後アニメーション指定 */
+.devilbattle .devilman2 {
+	position: absolute;
+	top: 100;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0px auto;
+	width: auto;
+	height: 300px;
+	animation: anime666 0.25s 0s infinite alternate;  /* アニメーション指定 */
+}
+
+@keyframes anime666 {
+    0% {
+        left: 0;
+    }
+    50% {
+        top: 99px;
+    }
+    100% {
+        bottom: 0px;
+    }
+}
+/* 以下エピローグ用アニメーション指定 ↓*/
+.kingcastle .king2 {
+	position: absolute;
+	top: 100;
+	bottom: 0;
+	left: 0px;
+	width: auto;
+	height: 200px;
+	animation: anime555 2s 0s infinite alternate;  /* アニメーション指定 */
+
+}
+
+.kingcastle .princess2 {
+	position: absolute;
+	top: 100;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0px auto;
+	width: auto;
+	height: 200px;
+	animation: anime77 1s 0s infinite alternate;  /* アニメーション指定 */
+
+}
+.balloon1{
+	position: absolute;
+	top: 60%;
+	left: 0%;
+	width: auto;
+	height: 200px;
+	animation: anime771 5.2s 0s infinite normal;
+}
+.balloon2{
+	position: absolute;
+	top: 65%;
+	left: 30%;
+	width: auto;
+	height: 200px;
+	animation: anime772 3s 0s infinite normal;
+}
+.balloon3{
+	position: absolute;
+	top: 73%;
+	left: 0%;
+	width: auto;
+	height: 200px;
+	animation: anime773 5s 0s infinite normal;
+}
+.balloon5{
+	position: absolute;
+	top: 55%;
+	left: 100%;
+	width: auto;
+	height: 200px;
+	animation: anime775 7s 0s infinite normal;
+}
+.balloon6{
+	position: absolute;
+	top: 71%;
+	left: 50%;
+	width: auto;
+	height: 200px;
+	animation: anime771 6s 0s infinite normal;
+}
+.balloon7{
+	position: absolute;
+	top: 71%;
+	left: 40%;
+	width: auto;
+	height: 200px;
+	animation: anime772 6s 0s infinite normal;
+}
+.balloon8{
+	position: absolute;
+	top: 55%;
+	left: 72%;
+	width: auto;
+	height: 200px;
+	animation: anime773 5s 0s infinite normal;
+}
+.balloon10{
+	position: absolute;
+	top: 70%;
+	left: 32%;
+	width: auto;
+	height: 200px;
+	animation: anime780 4s 0s infinite normal;
+}
+
+@keyframes anime55 {
+    0% {
+        left: 0;
+    }
+    25% {
+        bottom: 150px;
+    }
+    50% {
+    	bottom: 0px; left:200px
+    }
+    100% {
+        bottom:200px; right:300px;
+    }
+}
+
+@keyframes anime555 {
+    0% {
+        left: 0;
+    }
+
+    100% {
+         left:28%;
+    }
+}
+@keyframes anime77 {
+    0% {
+        left: 0;
+    }
+
+    50% {
+    	bottom: 15px;
+    }
+    100% {
+        bottom: 0px;
+    }
+}
+
+@keyframes anime771 {
+    0% {
+        left: 71%;
+    }
+    100% {
+    	top: -50%;
+    }
+}
+@keyframes anime772 {
+    0% {
+       left: 48%;
+    }
+    100% {
+    	top: -50%;
+    }
+}
+@keyframes anime773 {
+    0% {
+        left: 12%;
+    }
+    100% {
+    	top: -50%;
+    }
+}
+
+@keyframes anime775 {
+    0% {
+       left: 22%;
+    }
+    100% {
+    	top: -50%;
+    }
+}
+@keyframes anime776 {
+    0% {
+        left: 81%;
+    }
+    100% {
+    	top: -50%;
+    }
+}
+@keyframes anime777 {
+    0% {
+		left: 0;
+    }
+    100% {
+    	top: -50%;
+    }
+}
+@keyframes anime778 {
+    0% {
+       left: 50%;
+    }
+    100% {
+    	top: -50%;
+    }
+}
+@keyframes anime780 {
+    0% {
+       left: 0%;
+    }
+    100% {
+    	top: -50%;
+    }
+}
 /*エンディング用*/
 
 .excel{
@@ -391,10 +666,14 @@ position: absolute;
 	text-align: center;
 }
 /*ランキング表示用*/
-.clearlist{
-	text-align: center;
+table{
+	margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    width: 20%;
 }
 /*終了ボタン用*/
 .startbutton456{
 	text-align: center;
+	margin-top: 10px;
 }

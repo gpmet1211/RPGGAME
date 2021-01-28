@@ -11,12 +11,10 @@
 <body>
 
 
-<img src="http://localhost:8080/RPGGAME/image/Devil_C.jpg" alt="devilcastle" class="pixel"/>
+<img src="http://localhost:8080/RPGGAME/image/Devil_C.jpg"  class="pixel" alt="薄暗い魔王の城の入口、空にはドラゴンが飛んでいる"/>
 <div class="selectbutton2">
-<input type="submit"    value="牢獄"  onclick="location.href='prison.jsp'" class="a">
-<input type="submit"    value="左の部屋" class="b">
-<input type="submit"    value="危なそうな部屋" class="c">
-<input type="submit"    value="右の部屋" class="d">
+<input type="submit"    value="牢獄"  onclick="location.href='prison.jsp'" >
+
 </div>
 
 </body>

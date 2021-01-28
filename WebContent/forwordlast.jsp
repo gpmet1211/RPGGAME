@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<img alt="prologue" src="http://localhost:8080/RPGGAME/image/Devil.png" class="pixel0">
+<img src="http://localhost:8080/RPGGAME/image/Devil.png" class="pixel0" alt="姫をさらった魔王が現れた">
 <form action="FightServlet1" method="post">
 <div class="prologue">ゴゴゴゴゴゴゴゴゴッ.........!!!!!!<br>
 お前は.......あの時の勇者の孫ではないか！！！！１００年の恨みッ！！

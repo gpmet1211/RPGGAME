@@ -29,8 +29,8 @@ public class MonsterDAO {
 				int hp = rs.getInt("monster_hp");
 				int mp = rs.getInt("monster_mp");
 				int attack = rs.getInt("monster_attack");
-				int exp = rs.getInt("monster_Exp");
-				Monster monster = new Monster(id, name, hp, mp, attack, exp);
+				String url = rs.getString("monster_url");
+				Monster monster = new Monster(id, name, hp, mp, attack, url);
 				monsterList.add(monster);
 			}
 		} catch (SQLException | ClassNotFoundException e) {

@@ -37,6 +37,12 @@ public class ClearDAO {
 		return clearList;
 	}
 
+	/**
+	 * 指定されたlimit値からClearリストを検索して返します。
+	 * @param list 1位～表示したいランキング値
+	 * @return List<Clear>
+	 * @throws SQLException,ClassNotFoundException
+	 */
 	public List<Clear> findRanker(int limit) {
 		List<Clear> clearList = new ArrayList<Clear>();
 
@@ -65,6 +71,39 @@ public class ClearDAO {
 		return clearList;
 	}
 
+	/**
+	 * 全レコードからをClear_timeの平均値を検索して返します。
+	 * @param list 1位～表示したいランキング値
+	 * @return long
+	 * @throws SQLException,ClassNotFoundException
+	 */
+	public long findAvg() {
+		long avg = 0;
+
+		// データベース接続
+		try (Connection conn = ConnectionManager.getConnection()) {
+
+			// SELECT文の準備
+			String sql = "SELECT AVG(clear_time) FROM m_clear;";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			// SELECTを実行
+			ResultSet rs = pStmt.executeQuery();
+			// SELECT文の結果からavgを取得
+			while (rs.next()) {
+				avg = rs.getInt("AVG(clear_time)");
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return avg;
+	}
+	/**
+	 * 指定されたClearインスタンスをレコードとしてテーブルに挿入して、成否により真偽値を返します。
+	 * @param Clear テーブルに挿入したいインスタンス
+	 * @return List<Clear>
+	 * @throws SQLException,ClassNotFoundException
+	 */
 	public boolean create(Clear clear) {
 		// データベース接続
 		try (Connection conn = ConnectionManager.getConnection()) {

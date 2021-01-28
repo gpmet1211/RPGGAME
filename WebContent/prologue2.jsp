@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<img alt="prologue" src="http://localhost:8080/RPGGAME/image/Castle2.jpg" class="pixel">
+<img src="http://localhost:8080/RPGGAME/image/Castle2.jpg" class="pixel" alt="プロローグ２" >
 
 <div class="prologue">１０月３１日、とある出来事が起こった。
 その日は全国の勇者によるハロウィーンの仮想大会があって

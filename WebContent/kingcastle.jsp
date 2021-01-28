@@ -14,7 +14,7 @@
 
 <!-- 王様の画像を800px,400pxで貼り付け -->
 <div class="kingcastle">
-  <img src="http://localhost:8080/RPGGAME/image/Castle2.jpg" alt="hill" class="castle">
+  <img src="http://localhost:8080/RPGGAME/image/Castle2.jpg"  class="castle" alt="王様のお城の前、花畑がある広場で王様が慌てている。">
   <img src="http://localhost:8080/RPGGAME/image/King.png" class="king">
 </div>
 

@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ page import="model.Hero,model.Sword,java.util.List"%>
+
 <% List<Sword> swordList = (List<Sword>) session.getAttribute("swordList");%>
-<% boolean statusCharge = (boolean) session.getAttribute("statusCharge"); %>
+<% int chargeTargetTime = (int) session.getAttribute("chargeTargetTime"); %>
 <% List<Hero> heroList = (List<Hero>) session.getAttribute("heroList");%>
 <% int ikeStartTurn = (Integer) session.getAttribute("ikeStartTurn"); %>
+
+<% long chargeResultTime = (long) request.getAttribute("chargeResultTime"); %>
+
 
 <div class="square">
  <a>
@@ -15,11 +18,12 @@
 		HP:<%=hero.getHp()%>
 		MP:<%=hero.getMp()%>
 		<%if(ikeStartTurn != 0) {%>　☆イケおじ中☆<% } %>
+		<%if(chargeResultTime != 0) {%>　誤差：<%=(double)chargeResultTime / 1000%>秒 <% } %>
 		<br>
 	<% } %>
  <!-- battleIncludeより参照 -->
 
- <%if(!(statusCharge)) {%>
+ <%if(chargeTargetTime == 0) {%>
   <form action="ResultServlet" method="get"> <!-- 以下のvalue値はサーブレットに影響するため注意 -->
    <input type="submit" value="ためる" name="select" title="【消費MP０】ためるをクリックで秒数が計測開始される。画面内に表示される特定の秒数で放つボタンを押せ！">
    <input type="submit" value="坂東エイド" name="select" title="【消費MP４】HPを３０～１００ランダムに回復">
