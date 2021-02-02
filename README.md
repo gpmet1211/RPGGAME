@@ -1,4 +1,6 @@
 # RPGGAME
+#ゲーム開始
+以下DBの準備後、start.jspより実行願います。
 # DBの準備
 データベースが必要となりますので、mysqlより以下コマンドを実行願います。
 
@@ -74,5 +76,3 @@ INSERT INTO rpgdb.m_hero VALUES(1,'勇者',50,10,0,1);
 INSERT INTO rpgdb.m_clear(clear_name, clear_time) VALUES('もとき',52329);
 INSERT INTO rpgdb.m_clear(clear_name, clear_time) VALUES('あんまん',240000);
 
-#ゲーム開始
-start.jspより実行願います。
