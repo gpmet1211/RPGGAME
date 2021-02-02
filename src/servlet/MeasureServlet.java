@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ClearDAO;
+import dao.MonsterDAO;
 import model.Clear;
 
 /**
@@ -42,6 +43,12 @@ public class MeasureServlet extends HttpServlet {
 			gameStartTime = System.currentTimeMillis();
 			// 情報をセッションスコープに保存
 			session.setAttribute("gameStartTime", gameStartTime);
+			// リクエストからゲームモード情報を取得し、セッションスコープに保存
+			String mode = request.getParameter("mode");
+			session.setAttribute("mode", mode);
+			// モードを渡してDBのボス情報を変更（UPDATE)
+			MonsterDAO monsterDAO = new MonsterDAO();
+			monsterDAO.updateDevil(mode);
 			// フォワード先の指定
 			url = "prologue.jsp";
 		} else if (endFlag.equals("end")) { //エンディング前

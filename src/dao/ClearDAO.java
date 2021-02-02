@@ -11,6 +11,11 @@ import model.Clear;
 
 public class ClearDAO {
 
+	/**
+	 * すべてのクリア情報を検索して返します。
+	 * @param
+	 * @return List<Clear>
+	*/
 	public List<Clear> findAll() {
 		List<Clear> clearList = new ArrayList<Clear>();
 
@@ -41,7 +46,6 @@ public class ClearDAO {
 	 * 指定されたlimit値からClearリストを検索して返します。
 	 * @param list 1位～表示したいランキング値
 	 * @return List<Clear>
-	 * @throws SQLException,ClassNotFoundException
 	 */
 	public List<Clear> findRanker(int limit) {
 		List<Clear> clearList = new ArrayList<Clear>();
@@ -73,9 +77,8 @@ public class ClearDAO {
 
 	/**
 	 * 全レコードからをClear_timeの平均値を検索して返します。
-	 * @param list 1位～表示したいランキング値
+	 * @param
 	 * @return long
-	 * @throws SQLException,ClassNotFoundException
 	 */
 	public long findAvg() {
 		long avg = 0;
@@ -101,8 +104,7 @@ public class ClearDAO {
 	/**
 	 * 指定されたClearインスタンスをレコードとしてテーブルに挿入して、成否により真偽値を返します。
 	 * @param Clear テーブルに挿入したいインスタンス
-	 * @return List<Clear>
-	 * @throws SQLException,ClassNotFoundException
+	 * @return boolean
 	 */
 	public boolean create(Clear clear) {
 		// データベース接続

@@ -4,6 +4,9 @@
 
 <% long gameClearTime = (long) session.getAttribute("gameClearTime"); %>
 <% List<Clear> clearList = (List<Clear>) request.getAttribute("clearList");%>
+<% String mode = (String) session.getAttribute("mode");%>
+
+
 <% String errorMsg = (String) request.getAttribute("errorMsg"); %>
 <% long clearAvg = (long) request.getAttribute("clearAvg"); %>
 <% int i = 1; %>
@@ -22,19 +25,23 @@
 
 
 <a class="excel1">
-<form action="MeasureServlet" method="POST">
-<% if(gameClearTime != 0){ %> <!-- 一度クリアすると0になるので非表示とする -->
-クリア時間：<%=(double)gameClearTime / 1000%>秒&nbsp;&nbsp;
+ <form action="MeasureServlet" method="POST">
+クリア時間：<%=(double)gameClearTime / 1000%>秒&nbsp;&nbsp;<br>
+<% if(mode.equals("easy")){ %>
+	次はNORMALモードに挑戦してみよう！NORMALモードは自分の記録をレコード登録できるよ。
+<% }else if(mode.equals("normal")) {%>
+ <% if(gameClearTime != 0){ %> <!-- 一度クリアすると0になるので非表示とする -->
 ユーザ名：<input type="text" name="userName" placeholder="ユーザー名を入力"/>
 <input type="submit" value="登録する" >
+ <% } %>
 <% } %></form></a>
 
 </div>
+<br>
 	<% if(errorMsg != null){ %>
 		<p class="clearlist"><%= errorMsg %></p>
 	<% } %>
 	<table >
-
 	<% for (Clear clear : clearList) { %>
 		<tr><td><%=i %>位</td> <td><%=clear.getName()%></td><td><%=(double)clear.getTime() / 1000%>秒</td></tr><%i++; %>
 	<% } %>

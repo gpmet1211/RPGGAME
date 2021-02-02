@@ -11,6 +11,11 @@ import model.Sword;
 
 public class SwordDAO {
 
+	/**
+	 * すべての武器を検索して返します。
+	 * @param
+	 * @return List<Sword>
+	*/
 	public List<Sword> findAll() {
 		List<Sword> swordList = new ArrayList<Sword>();
 
@@ -41,7 +46,6 @@ public class SwordDAO {
 	 * 指定されたidから武器を検索して返します。
 	 * @param swordId 武器のコード
 	 * @return Swordクラス
-	 * @throws SQLException,ClassNotFoundException
 	 */
 	public Sword getSword(Integer swordId) {
 

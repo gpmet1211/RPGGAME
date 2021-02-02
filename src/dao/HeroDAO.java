@@ -12,6 +12,11 @@ import model.Sword;
 
 public class HeroDAO {
 
+	/**
+	 * すべての勇者を検索して返します。※現状一人
+	 * @param
+	 * @return List<Hero>
+	*/
 	public List<Hero> findAll()  {
 		List<Hero> heroList = new ArrayList<Hero>();
 

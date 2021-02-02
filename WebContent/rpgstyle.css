@@ -16,6 +16,9 @@ div.square {
 	 width:800px;
 	 height: 115px;
 }
+div.titleform{
+	text-align:center;
+}
 
 /*モンスターの可動域制限のための範囲作成*/
 div.square2 {

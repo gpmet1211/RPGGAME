@@ -59,7 +59,8 @@ public class ResultServlet extends HttpServlet {
 		int chargeTargetTime; // チャージ目標時間
 		long chargeResultTime; // チャージ時間
 		String chargeMessage; // チャージメッセージ
-		String battleMessage; // バトルメッセージ
+		StringBuilder battleSb = new StringBuilder(); //バトルメッセージ用
+		String battleMessage = ""; // バトルメッセージ
 		SwordDAO swordDAO = new SwordDAO(); //武器のDAO
 		Sword sword = swordDAO.getSword(1); //武器（初期値として普通の剣(ID:1)とする
 
@@ -67,7 +68,6 @@ public class ResultServlet extends HttpServlet {
 		chargeResultTime = 0; // チャージ時間
 		request.setAttribute("chargeResultTime", chargeResultTime);
 		chargeMessage = ""; // チャージメッセージ
-		battleMessage = ""; // バトルメッセージ
 		session.setAttribute("chargeMessage", chargeMessage);
 
 		/****** ↓ボタンで渡された情報により分岐 ******/
@@ -105,25 +105,25 @@ public class ResultServlet extends HttpServlet {
 				int damege = hero.releaseAttack(chargeResultTime, monster);
 				int bonusMp = hero.releaseBonus(chargeResultTime);
 				// バトルメッセージに結果を反映
-				if (damege >= 100 && bonusMp == 10) {
-					battleMessage += "とてもよい攻撃、大ダメージ！";
-				} else if (bonusMp == 5) {
-					battleMessage += "少しよい攻撃！";
+				if (damege >= 35 && bonusMp >= 10) { //初期装備で3倍ダメージかつMP10回復想定
+					battleSb.append("とてもよい攻撃、大ダメージ！");
+				} else if (bonusMp >= 5) {
+					battleSb.append("少しよい攻撃！");
 				} else {
-					battleMessage += "普通の攻撃！";
+					battleSb.append("普通の攻撃！");
 				}
 				// バトルメッセージの追加
 				if (damege > 0) {
-					battleMessage += "勇者は" + damege + "ダメージを" + monster.getName() + "に与えた<br>";
+					battleSb.append("勇者は" + damege + "ダメージを" + monster.getName() + "に与えた<br>");
 				}
 				if (bonusMp > 0) {
-					battleMessage += "勇者のMPが" + bonusMp + "回復した<br>";
+					battleSb.append("勇者のMPが" + bonusMp + "回復した<br>");
 				}
 				// 時刻情報をセッションスコープに保存
 				request.setAttribute("chargeResultTime", chargeResultTime);
 
 				// チャージ状態とスタート時間を初期化し、セッションスコープに登録
-				chargeStartTime = 0;
+				chargeStartTime = 0; //チャージ開始時間
 				chargeTargetTime = 0; //チャージ目標時間
 				session.setAttribute("chargeTargetTime", chargeTargetTime);
 				session.setAttribute("startTime", chargeStartTime);
@@ -140,9 +140,9 @@ public class ResultServlet extends HttpServlet {
 			int aidPoint = hero.bandoAid();
 
 			if (aidPoint != 0) { //回復できた場合
-				battleMessage += "勇者のHPが" + aidPoint + "回復した<br>";
+				battleSb.append("勇者のHPが" + aidPoint + "回復した<br>");
 			} else { //回復できなかった場合
-				battleMessage += "MPが足りない！<br>";
+				battleSb.append("MPが足りない！<br>");
 			}
 
 			break;
@@ -150,11 +150,11 @@ public class ResultServlet extends HttpServlet {
 
 			boolean ikeFlag = hero.ikeTurbo();
 			if (ikeFlag) { //処理できた場合
-				battleMessage += "イケおじモード！武器の攻撃力が2倍になる！<br>";
+				battleSb.append("イケおじモード！武器の攻撃力が2倍になる！<br>");
 				//現在のターンをセッションスコープに保存
 				session.setAttribute("ikeStartTurn", encountTurn);
 			} else { //処理できなかった場合
-				battleMessage += "MPが足りない！<br>";
+				battleSb.append("MPが足りない！<br>");
 			}
 
 			break;
@@ -164,9 +164,9 @@ public class ResultServlet extends HttpServlet {
 			int damege = hero.RemorseAttack(monster);
 
 			if (damege != 0) { //攻撃できた場合
-				battleMessage += "勇者の怨念が振りかかる！" + damege + "ダメージを" + monster.getName() + "に与えた<br>";
+				battleSb.append("勇者の怨念が振りかかる！" + damege + "ダメージを" + monster.getName() + "に与えた<br>");
 			} else { //攻撃できなかった場合
-				battleMessage += "MPが足りない！<br>";
+				battleSb.append("MPが足りない！<br>");
 			}
 
 			break;
@@ -181,14 +181,14 @@ public class ResultServlet extends HttpServlet {
 				//武器生成メソッド
 				boolean scFlag = hero.swordCreate(sword);
 				if (scFlag) { //処理できた場合
-					battleMessage += "武器生成！武器を" + hero.getSword().getName() + "に変更した！<br>";
+					battleSb.append("武器生成！武器を" + hero.getSword().getName() + "に変更した！<br>");
 					//現在のターンをセッションスコープに保存
 					session.setAttribute("swordCreateTurn", encountTurn);
 				} else { //処理できなかった場合
-					battleMessage += "MPが足りない！<br>";
+					battleSb.append("MPが足りない！<br>");
 				}
 			} else { //イケおじモードのとき
-				battleMessage += "イケおじモードでは武器生成できない！<br>";
+				battleSb.append("イケおじモードでは武器生成できない！<br>");
 			}
 			break;
 
@@ -203,14 +203,14 @@ public class ResultServlet extends HttpServlet {
 				//超武器生成メソッド
 				boolean sscFlag = hero.superSwordCreate(sword);
 				if (sscFlag) { //処理できた場合
-					battleMessage += "超武器生成！武器を" + hero.getSword().getName() + "に変更した！<br>";
+					battleSb.append("超武器生成！武器を" + hero.getSword().getName() + "に変更した！<br>");
 					//現在のターンをセッションスコープに保存
 					session.setAttribute("swordCreateTurn", encountTurn);
 				} else { //処理できなかった場合
-					battleMessage += "MPが足りない！<br>";
+					battleSb.append("MPが足りない！<br>");
 				}
 			} else { //イケおじモードのとき
-				battleMessage += "イケおじモードでは武器生成できない！<br>";
+				battleSb.append("イケおじモードでは武器生成できない！<br>");
 			}
 			break;
 
@@ -227,7 +227,7 @@ public class ResultServlet extends HttpServlet {
 		//敵が生きれば、敵の攻撃
 		if (judgeEnemyLife) {
 			int monsterDamege = monster.attack(hero);
-			battleMessage += "勇者は" + monsterDamege + "ダメージを" + monster.getName() + "から受けた<br>";
+			battleSb.append("勇者は" + monsterDamege + "ダメージを" + monster.getName() + "から受けた<br>");
 		}
 		//味方が死んだか判定（HPが0）
 		if (hero.getHp() == 0) {
@@ -259,7 +259,7 @@ public class ResultServlet extends HttpServlet {
 		if (ikeStartTurn != 0) {
 			if (encountTurn - ikeStartTurn >= 5) { //5ターン設定
 				hero.getSword().setAttack(hero.getSword().getAttack() / 2); //攻撃力を半分にする（元に戻す）
-				battleMessage += "普通のおじさんに戻った！<br>";
+				battleSb.append("普通のおじさんに戻った！<br>");
 				ikeStartTurn = 0; //モード終了し、値を初期化
 				session.setAttribute("ikeStartTurn", ikeStartTurn);
 			} else {
@@ -273,13 +273,14 @@ public class ResultServlet extends HttpServlet {
 				hero.setSword(sword); //武器を普通の剣に戻す）
 				swordCreateTurn = 0; //モード終了し、値を初期化
 				session.setAttribute("swordCreateTurn", swordCreateTurn);
-				battleMessage += "武器が元にもどった<br>";
+				battleSb.append("武器が元にもどった<br>");
 			} else {
 				//武器生成中
 			}
 		}
 
 		// 戦闘情報をセッションスコープに保存
+		battleMessage = battleSb.toString();
 		request.setAttribute("battleMessage", battleMessage);
 
 		//ターン数を追加し、セッションスコープに保存
